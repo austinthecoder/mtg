@@ -7,17 +7,23 @@ module MTG
       NAMES = %w(common uncommon rare mythic\ rare)
 
       def initialize(name)
+        name = name.to_s.strip.downcase
         unless NAMES.include?(name)
-          raise ArgumentError, "#{name.inspect} is not one of: #{NAMES.inspect}"
+          raise ArgumentError, "name is not one of: #{NAMES.inspect}"
         end
-        @name = name.to_s
+        @name = name
       end
 
-      attr_reader :name
-      alias_method :to_s, :name
+      def to_s(format = nil)
+        if format.try(:short)
+          {'common' => 'C', 'uncommon' => 'U', 'rare' => 'R', 'mythic rare' => 'MR'}[@name]
+        else
+          @name
+        end
+      end
 
       def <=>(rarity)
-        NAMES.index(name) <=> NAMES.index(rarity.name)
+        NAMES.index(to_s) <=> NAMES.index(rarity.to_s)
       end
 
       def eql?(rarity)
@@ -25,12 +31,12 @@ module MTG
       end
 
       def hash
-        name.hash
+        @name.hash
       end
 
       NAMES.each do |name|
         define_method(name.gsub(/\s/, '_') + '?') do
-          self.name == name
+          @name == name
         end
       end
 

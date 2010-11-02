@@ -103,4 +103,31 @@ describe MTG::Card::Rarity do
     end
   end
 
+  describe "#to_s" do
+    MTG::Card::Rarity::NAMES.each do |name|
+      context "when the rarity is #{name.inspect}" do
+        context "when the format is ':short'" do
+          before do
+            @short_name = case name
+              when 'common' then 'C'
+              when 'uncommon' then 'U'
+              when 'rare' then 'R'
+              when 'mythic rare' then 'MR'
+            end
+          end
+
+          it "returns #{@short_name.inspect}" do
+            MTG::Card::Rarity.new(name).to_s(:short).should == @short_name
+          end
+        end
+
+        context "when the format is not ':short'" do
+          it "returns #{name.inspect}" do
+            MTG::Card::Rarity.new(name).to_s.should == name
+          end
+        end
+      end
+    end
+  end
+
 end
