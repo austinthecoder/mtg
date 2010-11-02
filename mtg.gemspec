@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'mtg'
-  s.version = '0.0.2'
+  s.version = '0.0.3'
   s.authors = ['Austin Schneider']
   s.email = "soccer022483@gmail.com"
   s.description = 'Objects such as cards, colors, mana costs, etc relating to the Magic, The Gathering trading card game.'
