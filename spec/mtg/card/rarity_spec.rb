@@ -14,7 +14,7 @@ describe MTG::Card::Rarity do
         before { @r2 = MTG::Card::Rarity.new(name) }
 
         it("returns an instance") { @r2.should be_an_instance_of(MTG::Card::Rarity) }
-        it("sets the name") { @r2.name.should == name }
+        it("sets the name") { @r2.to_s.should == name }
       end
     end
 
@@ -81,7 +81,7 @@ describe MTG::Card::Rarity do
 
   describe "#hash" do
     it "returns the name#hash" do
-      @r.hash.should == @r.name.hash
+      @r.hash.should == @r.to_s.hash
     end
   end
 

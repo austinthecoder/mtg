@@ -15,7 +15,7 @@ module MTG
       end
 
       def to_s(format = nil)
-        if format.try(:short)
+        if format == :short
           {'common' => 'C', 'uncommon' => 'U', 'rare' => 'R', 'mythic rare' => 'MR'}[@name]
         else
           @name
