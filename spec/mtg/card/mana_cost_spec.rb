@@ -66,4 +66,15 @@ describe MTG::Card::ManaCost do
     end
   end
 
+  # describe "#<=>" do
+  #   context "when the other is a non MTG::Card::ManaCost" do
+  #     before { @other = nil }
+  #     it("raises an error") do
+  #       lambda do
+  #         MTG::Card::ManaCost.new <=> @other
+  #       end.should raise_error(ArgumentError, "cannot compare with #{@other.inspect}")
+  #     end
+  #   end
+  # end
+
 end

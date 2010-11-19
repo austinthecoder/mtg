@@ -4,7 +4,7 @@ module MTG
 
       NON_ZERO_PATTERN = /^(X*)([1-9]\d*)?([BGRUW]*)$/
 
-      def initialize(str)
+      def initialize(str = nil)
         str = str.to_s.strip.upcase
         if (str != '') && str != '0' && !(str =~ NON_ZERO_PATTERN)
           raise ArgumentError, "invalid mana cost"
